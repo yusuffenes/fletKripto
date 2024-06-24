@@ -1,5 +1,5 @@
 import flet as ft
-from kriptoApi import get_coin_names, get_crypto_info
+from cryptoApi import get_coin_names, get_crypto_info
 
 def main(page: ft.Page):
     def on_change(event):
@@ -35,11 +35,11 @@ def main(page: ft.Page):
         selected_item.update()
         page.update()
 
-    def update_fixed_prices():
+    def coins_update():
         coins = ["BTCUSDT", "ETHUSDT", "USDTTRY", "BNBUSDT"]
         prices = {coin: get_crypto_info(coin)['lastPrice'] for coin in coins}
         
-        fixed_prices_container.content = ft.Column(
+        some_coins.content = ft.Column(
             [
                 ft.Text(f"BTC-USDT: {prices['BTCUSDT']}", size=16, weight=ft.FontWeight.BOLD, color=ft.colors.WHITE),
                 ft.Text(f"ETH-USDT: {prices['ETHUSDT']}", size=16, weight=ft.FontWeight.BOLD, color=ft.colors.WHITE),
@@ -49,7 +49,7 @@ def main(page: ft.Page):
             spacing=10,
             alignment=ft.MainAxisAlignment.CENTER
         )
-        fixed_prices_container.update()
+        some_coins.update()
         page.update()
     
     
@@ -100,7 +100,7 @@ def main(page: ft.Page):
         ]),
     )
 
-    fixed_prices_container = ft.Container(
+    some_coins = ft.Container(
         content=None,
         padding=20,
         border_radius=8,
@@ -118,7 +118,7 @@ def main(page: ft.Page):
 
     
     
-    main_content = ft.Row(
+    main = ft.Row(
         controls=[
             ft.Column(
                 controls=[
@@ -130,7 +130,7 @@ def main(page: ft.Page):
                 horizontal_alignment=ft.CrossAxisAlignment.CENTER,
                 spacing=20
             ),
-            fixed_prices_container,
+            some_coins,
         ],
         alignment=ft.MainAxisAlignment.SPACE_AROUND,
         vertical_alignment=ft.CrossAxisAlignment.CENTER,
@@ -139,7 +139,7 @@ def main(page: ft.Page):
 
     page.add(
         ft.Container(
-            content=main_content,
+            content=main,
             alignment=ft.alignment.center,
             expand=True,
             bgcolor=ft.colors.BLACK12,
@@ -149,7 +149,7 @@ def main(page: ft.Page):
     def update_periodically():
         while True:
             update_crypto_info()
-            update_fixed_prices()
+            coins_update()
 
     import threading
     threading.Thread(target=update_periodically, daemon=True).start()
