@@ -36,15 +36,17 @@ def main(page: ft.Page):
         page.update()
 
     def coins_update():
-        coins = ["BTCUSDT", "ETHUSDT", "USDTTRY", "BNBUSDT"]
-        prices = {coin: get_crypto_info(coin)['lastPrice'] for coin in coins}
+        coin_list = ["BTCUSDT", "ETHUSDT", "BNBUSDT","LUNAUSDT","USDTTRY"]
+        prices = {coin: get_crypto_info(coin)['lastPrice'] for coin in coin_list}
         
         some_coins.content = ft.Column(
             [
-                ft.Text(f"BTC-USDT: {prices['BTCUSDT']}", size=16, weight=ft.FontWeight.BOLD, color=ft.colors.WHITE),
-                ft.Text(f"ETH-USDT: {prices['ETHUSDT']}", size=16, weight=ft.FontWeight.BOLD, color=ft.colors.WHITE),
-                ft.Text(f"USDT-TRY: {prices['USDTTRY']}", size=16, weight=ft.FontWeight.BOLD, color=ft.colors.WHITE),
-                ft.Text(f"BNB-USDT: {prices['BNBUSDT']}", size=16, weight=ft.FontWeight.BOLD, color=ft.colors.WHITE),
+                ft.Text("SIK GEZİLENLER", size=18, weight=ft.FontWeight.BOLD,font_family='Calibri',color=ft.colors.BLUE),
+                ft.Text(f"BTC: {prices['BTCUSDT']} USDT", size=16,color=ft.colors.BLUE),
+                ft.Text(f"ETH: {prices['ETHUSDT']} USDT", size=16,color=ft.colors.BLUE),
+                ft.Text(f"BNB: {prices['BNBUSDT']} USDT ", size=16,color=ft.colors.BLUE),
+                ft.Text(f"LUNA: {prices['LUNAUSDT']} USDT", size=16,color=ft.colors.BLUE),
+                ft.Text(f"USDT: {prices['USDTTRY']} TRY", size=16,color=ft.colors.BLUE),
             ],
             spacing=10,
             alignment=ft.MainAxisAlignment.CENTER
@@ -95,8 +97,8 @@ def main(page: ft.Page):
         value='basit', 
         on_change=on_change,  
         content=ft.Column([
-            ft.CupertinoRadio(value='basit', label='Basit', active_color=ft.colors.BLUE, inactive_color=ft.colors.YELLOW),
-            ft.CupertinoRadio(value='detayli', label='Detaylı', active_color=ft.colors.BLUE, inactive_color=ft.colors.YELLOW),
+            ft.CupertinoRadio(value='basit', label='Basit', active_color=ft.colors.BLUE,),
+            ft.CupertinoRadio(value='detayli', label='Detaylı', active_color=ft.colors.BLUE),
         ]),
     )
 
