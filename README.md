@@ -19,4 +19,4 @@ Uygulama açıldığında, menüden bir kripto para birimi seçin. Seçim yaptı
 
 ## Proje Yapısı
 - main.py: Uygulamanın ana kodları.
-- kriptoApi.py: Binance API'larından veri çekmek için kullanılan fonksiyonlar.
+- cryptoApi.py: Binance API'larından veri çekmek için kullanılan fonksiyonlar.
